@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Партнерский портал - База знаний</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            will-change: scroll-position;
+        }
+        .gradient-bg { 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background-attachment: fixed;
+        }
+        .card-hover { 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            will-change: transform;
+        }
+        .card-hover:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); 
+        }
+        .nav-item { 
+            transition: background-color 0.15s ease;
+        }
+        .nav-item:hover { 
+            background-color: rgba(99, 102, 241, 0.1); 
+        }
+        .nav-item.active { 
+            background-color: rgba(99, 102, 241, 0.1); 
+            border-right: 3px solid #6366f1; 
+        }
+        .blur-light {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Header -->
+    <header class="blur-light border-b border-gray-200 sticky top-0 z-50">
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-gray-900">Партнерский портал</h1>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                    </button>
+                    <div class="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center">
+                        <span class="text-white text-sm font-medium">PA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- Sidebar Navigation -->
+        <div class="w-64 blur-light border-r border-gray-200 min-h-screen">
+            <nav class="mt-5 px-2">
+                <div class="space-y-1">
+                    <a href="index.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                    <a href="deals.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Сделки
+                    </a>
+                    <a href="education.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                        Обучение
+                    </a>
+                    <a href="licenses.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                        </svg>
+                        Лицензии
+                    </a>
+                    <a href="analytics.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Аналитика
+                    </a>
+                    <a href="knowledge.html" class="nav-item active group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                        </svg>
+                        База знаний
+                    </a>
+                    <a href="support.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        Техподдержка
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">База знаний</h2>
+                <p class="text-gray-600">Найдите ответы на ваши вопросы и изучите материалы</p>
+            </div>
+
+            <!-- Search Section -->
+            <div class="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6 mb-8">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-1">
+                        <div class="relative">
+                            <input type="text" placeholder="Поиск по базе знаний..." class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                        Найти
+                    </button>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="category-card card-hover bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Безопасность</h3>
+                    <p class="text-sm text-gray-600 mb-4">24 статьи</p>
+                    <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Перейти →</button>
+                </div>
+
+                <div class="category-card card-hover bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Облачные решения</h3>
+                    <p class="text-sm text-gray-600 mb-4">18 статей</p>
+                    <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Перейти →</button>
+                </div>
+
+                <div class="category-card card-hover bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6 text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Аналитика</h3>
+                    <p class="text-sm text-gray-600 mb-4">15 статей</p>
+                    <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Перейти →</button>
+                </div>
+
+                <div class="category-card card-hover bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6 text-center">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Настройки</h3>
+                    <p class="text-sm text-gray-600 mb-4">12 статей</p>
+                    <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Перейти →</button>
+                </div>
+            </div>
+
+            <!-- Popular Articles -->
+            <div class="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900">Популярные статьи</h3>
+                    <a href="#" class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Показать все</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="article-card card-hover bg-white rounded-lg border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Безопасность</span>
+                            <span class="ml-auto text-sm text-gray-500">5 мин чтения</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Настройка двухфакторной аутентификации</h4>
+                        <p class="text-gray-600 mb-4">Подробное руководство по настройке 2FA для повышения безопасности вашей учетной записи.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">1,234 просмотра</span>
+                            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Читать →</button>
+                        </div>
+                    </div>
+
+                    <div class="article-card card-hover bg-white rounded-lg border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Облачные решения</span>
+                            <span class="ml-auto text-sm text-gray-500">8 мин чтения</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Миграция данных в Cloud Platform</h4>
+                        <p class="text-gray-600 mb-4">Пошаговое руководство по безопасной миграции ваших данных в облачную платформу.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">987 просмотров</span>
+                            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Читать →</button>
+                        </div>
+                    </div>
+
+                    <div class="article-card card-hover bg-white rounded-lg border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">Аналитика</span>
+                            <span class="ml-auto text-sm text-gray-500">6 мин чтения</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Создание кастомных отчетов в Analytics Pro</h4>
+                        <p class="text-gray-600 mb-4">Научитесь создавать персонализированные отчеты для ваших бизнес-потребностей.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">756 просмотров</span>
+                            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Читать →</button>
+                        </div>
+                    </div>
+
+                    <div class="article-card card-hover bg-white rounded-lg border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Настройки</span>
+                            <span class="ml-auto text-sm text-gray-500">4 мин чтения</span>
+                        </div>
+                        <h4 class="text-lg font-semibold text-gray-900 mb-2">Настройка интеграций с внешними сервисами</h4>
+                        <p class="text-gray-600 mb-4">Полное руководство по подключению внешних сервисов и API интеграций.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">543 просмотра</span>
+                            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Читать →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Webinars -->
+            <div class="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900">Ближайшие вебинары</h3>
+                    <a href="#" class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Календарь вебинаров</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="webinar-card card-hover bg-white rounded-lg border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Новые функции Security Suite 2024</h4>
+                                <p class="text-sm text-gray-600">15 октября, 14:00 МСК</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Обзор новых возможностей и улучшений в последней версии Security Suite.</p>
+                        <button class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                            Зарегистрироваться
+                        </button>
+                    </div>
+
+                    <div class="webinar-card card-hover bg-white rounded-lg border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Оптимизация Cloud Platform</h4>
+                                <p class="text-sm text-gray-600">18 октября, 16:00 МСК</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Советы по оптимизации производительности и снижению затрат на Cloud Platform.</p>
+                        <button class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                            Зарегистрироваться
+                        </button>
+                    </div>
+
+                    <div class="webinar-card card-hover bg-white rounded-lg border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Analytics Pro для начинающих</h4>
+                                <p class="text-sm text-gray-600">22 октября, 15:00 МСК</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Базовый курс по работе с Analytics Pro для новых пользователей.</p>
+                        <button class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                            Зарегистрироваться
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        // Добавление интерактивности для страницы базы знаний
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация карточек категорий
+            const categoryCards = document.querySelectorAll('.category-card');
+            anime({
+                targets: categoryCards,
+                translateY: [30, 0],
+                opacity: [0, 1],
+                delay: anime.stagger(100),
+                duration: 600,
+                easing: 'easeOutExpo'
+            });
+
+            // Анимация статей
+            const articleCards = document.querySelectorAll('.article-card');
+            anime({
+                targets: articleCards,
+                translateX: [-30, 0],
+                opacity: [0, 1],
+                delay: anime.stagger(150, {start: 300}),
+                duration: 600,
+                easing: 'easeOutExpo'
+            });
+
+            // Анимация вебинаров
+            const webinarCards = document.querySelectorAll('.webinar-card');
+            anime({
+                targets: webinarCards,
+                scale: [0.9, 1],
+                opacity: [0, 1],
+                delay: anime.stagger(200, {start: 600}),
+                duration: 600,
+                easing: 'easeOutExpo'
+            });
+
+            // Обработка кнопок регистрации на вебинары
+            const registerButtons = document.querySelectorAll('.webinar-card button');
+            registerButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const webinarTitle = this.closest('.webinar-card').querySelector('h4').textContent;
+                    showModal('Регистрация на вебинар', `Вы успешно зарегистрированы на вебинар "${webinarTitle}". Ссылка для подключения будет отправлена за день до мероприятия.`);
+                    this.textContent = 'Зарегистрировано';
+                    this.classList.remove('bg-indigo-600', 'hover:bg-indigo-700');
+                    this.classList.add('bg-green-600', 'hover:bg-green-700');
+                });
+            });
+
+            // Обработка кнопок категорий
+            const categoryButtons = document.querySelectorAll('.category-card button');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const categoryName = this.closest('.category-card').querySelector('h3').textContent;
+                    showModal('Категория базы знаний', `Открытие категории "${categoryName}". Функция доступна в полной версии портала.`);
+                });
+            });
+
+            // Обработка кнопок чтения статей
+            const readButtons = document.querySelectorAll('.article-card button');
+            readButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const articleTitle = this.closest('.article-card').querySelector('h4').textContent;
+                    showModal('Чтение статьи', `Открытие статьи "${articleTitle}". Функция доступна в полной версии портала.`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

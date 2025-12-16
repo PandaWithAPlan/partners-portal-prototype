@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Партнерский портал - Техподдержка</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            will-change: scroll-position;
+        }
+        .gradient-bg { 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background-attachment: fixed;
+        }
+        .card-hover { 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            will-change: transform;
+        }
+        .card-hover:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); 
+        }
+        .nav-item { 
+            transition: background-color 0.15s ease;
+        }
+        .nav-item:hover { 
+            background-color: rgba(99, 102, 241, 0.1); 
+        }
+        .nav-item.active { 
+            background-color: rgba(99, 102, 241, 0.1); 
+            border-right: 3px solid #6366f1; 
+        }
+        .blur-light {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        .status-open { background-color: #dbeafe; color: #1e40af; }
+        .status-in-progress { background-color: #fef3c7; color: #d97706; }
+        .status-closed { background-color: #d1fae5; color: #059669; }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Header -->
+    <header class="blur-light border-b border-gray-200 sticky top-0 z-50">
+        <div class="px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-gray-900">Партнерский портал</h1>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                    </button>
+                    <div class="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center">
+                        <span class="text-white text-sm font-medium">PA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- Sidebar Navigation -->
+        <div class="w-64 blur-light border-r border-gray-200 min-h-screen">
+            <nav class="mt-5 px-2">
+                <div class="space-y-1">
+                    <a href="index.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"/>
+                        </svg>
+                        Dashboard
+                    </a>
+                    <a href="deals.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Сделки
+                    </a>
+                    <a href="education.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                        Обучение
+                    </a>
+                    <a href="licenses.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                        </svg>
+                        Лицензии
+                    </a>
+                    <a href="analytics.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        Аналитика
+                    </a>
+                    <a href="knowledge.html" class="nav-item group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                        </svg>
+                        База знаний
+                    </a>
+                    <a href="support.html" class="nav-item active group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-900">
+                        <svg class="mr-3 h-5 w-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        Техподдержка
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-6">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Техподдержка</h2>
+                        <p class="text-gray-600">Создайте тикет или найдите решение в FAQ</p>
+                    </div>
+                    <button class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Создать тикет
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="quick-action-card card-hover bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">FAQ</h3>
+                            <p class="text-sm text-gray-600">Часто задаваемые вопросы</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Найдите быстрые ответы на популярные вопросы</p>
+                    <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Перейти к FAQ →</button>
+                </div>
+
+                <div class="quick-action-card card-hover bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">База знаний</h3>
+                            <p class="text-sm text-gray-600">Руководства и инструкции</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Подробные руководства по настройке и использованию</p>
+                    <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Открыть базу знаний →</button>
+                </div>
+
+                <div class="quick-action-card card-hover bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Чат поддержки</h3>
+                            <p class="text-sm text-gray-600">Онлайн-консультация</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Получите помощь от специалистов в реальном времени</p>
+                    <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Начать чат →</button>
+                </div>
+            </div>
+
+            <!-- My Tickets -->
+            <div class="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900">Мои тикеты</h3>
+                    <div class="flex space-x-2">
+                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">Все статусы</option>
+                            <option value="open">Открытые</option>
+                            <option value="in-progress">В работе</option>
+                            <option value="closed">Закрытые</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Тема</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Категория</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Приоритет</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Статус</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Обновлено</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#78901</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Проблема с активацией лицензии</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Лицензии</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Высокий</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="status-in-progress px-2 py-1 text-xs font-medium rounded-full">В работе</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2 часа назад</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-indigo-600 hover:text-indigo-900 mr-3">Открыть</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#78902</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Ошибка при экспорте отчетов</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Аналитика</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Средний</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="status-closed px-2 py-1 text-xs font-medium rounded-full">Закрыт</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1 день назад</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-indigo-600 hover:text-indigo-900 mr-3">Открыть</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#78903</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Настройка интеграции с CRM</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Интеграции</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Низкий</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="status-open px-2 py-1 text-xs font-medium rounded-full">Открыт</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3 дня назад</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-indigo-600 hover:text-indigo-900 mr-3">Открыть</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#78904</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Обновление до последней версии</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Обновления</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Средний</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="status-closed px-2 py-1 text-xs font-medium rounded-full">Закрыт</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1 неделя назад</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <button class="text-indigo-600 hover:text-indigo-900 mr-3">Открыть</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-6">Часто задаваемые вопросы</h3>
+                <div class="space-y-4">
+                    <div class="faq-item border border-gray-200 rounded-lg">
+                        <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors">
+                            <span class="font-medium text-gray-900">Как активировать лицензию?</span>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-4 hidden">
+                            <p class="text-gray-600">Для активации лицензии перейдите в раздел "Лицензии", нажмите кнопку "Активировать" и введите полученный лицензионный ключ. Система автоматически проверит ключ и активирует продукт.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item border border-gray-200 rounded-lg">
+                        <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors">
+                            <span class="font-medium text-gray-900">Как сбросить пароль?</span>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-4 hidden">
+                            <p class="text-gray-600">На странице входа нажмите "Забыли пароль?". Введите email, указанный при регистрации, и следуйте инструкциям в письме для восстановления доступа.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item border border-gray-200 rounded-lg">
+                        <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors">
+                            <span class="font-medium text-gray-900">Какие системные требования?</span>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-4 hidden">
+                            <p class="text-gray-600">Минимальные требования: Windows 10/macOS 10.15, 8GB RAM, современный браузер (Chrome, Firefox, Safari, Edge). Для корпоративных решений рекомендуется 16GB RAM.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item border border-gray-200 rounded-lg">
+                        <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors">
+                            <span class="font-medium text-gray-900">Как обновить до новой версии?</span>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-4 hidden">
+                            <p class="text-gray-600">Обновления устанавливаются автоматически. Для ручного обновления перейдите в "Настройки" → "Обновления" и нажмите "Проверить обновления". Следуйте инструкциям мастера обновления.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item border border-gray-200 rounded-lg">
+                        <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors">
+                            <span class="font-medium text-gray-900">Где найти документацию по API?</span>
+                            <svg class="w-5 h-5 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="faq-answer px-6 pb-4 hidden">
+                            <p class="text-gray-600">Документация по API доступна в разделе "Разработчикам" → "API документация". Там вы найдете описание всех методов, примеры запросов и ответов, а также SDK для популярных языков программирования.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        // Добавление интерактивности для страницы техподдержки
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация карточек быстрых действий
+            const quickActionCards = document.querySelectorAll('.quick-action-card');
+            anime({
+                targets: quickActionCards,
+                translateY: [30, 0],
+                opacity: [0, 1],
+                delay: anime.stagger(100),
+                duration: 600,
+                easing: 'easeOutExpo'
+            });
+
+            // Анимация строк таблицы
+            const tableRows = document.querySelectorAll('tbody tr');
+            anime({
+                targets: tableRows,
+                translateX: [-30, 0],
+                opacity: [0, 1],
+                delay: anime.stagger(100, {start: 300}),
+                duration: 600,
+                easing: 'easeOutExpo'
+            });
+
+            // Обработка кнопки создания тикета
+            const createTicketBtn = document.querySelector('button');
+            createTicketBtn.addEventListener('click', function() {
+                if (this.textContent.includes('Создать тикет')) {
+                    showModal('Создание тикета', 'Форма создания тикета будет открыта. Функция доступна в полной версии портала.');
+                }
+            });
+
+            // Обработка кнопок действий в таблице
+            const actionButtons = document.querySelectorAll('tbody button');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.textContent.includes('Открыть')) {
+                        const ticketId = this.closest('tr').querySelector('td').textContent;
+                        showModal('Тикет поддержки', `Открытие тикета ${ticketId}. Функция доступна в полной версии портала.`);
+                    }
+                });
+            });
+
+            // Обработка FAQ аккордеона
+            const faqItems = document.querySelectorAll('.faq-item button');
+            faqItems.forEach(button => {
+                button.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('svg');
+                    
+                    if (answer.classList.contains('hidden')) {
+                        answer.classList.remove('hidden');
+                        icon.style.transform = 'rotate(180deg)';
+                        
+                        // Анимация появления ответа
+                        anime({
+                            targets: answer,
+                            opacity: [0, 1],
+                            translateY: [-10, 0],
+                            duration: 300,
+                            easing: 'easeOutQuad'
+                        });
+                    } else {
+                        answer.classList.add('hidden');
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+
+            // Обработка быстрых действий
+            const quickActionButtons = document.querySelectorAll('.quick-action-card button');
+            quickActionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const actionText = this.textContent;
+                    if (actionText.includes('FAQ')) {
+                        showModal('FAQ', 'Открытие раздела часто задаваемых вопросов. Функция доступна в полной версии портала.');
+                    } else if (actionText.includes('базу знаний')) {
+                        window.location.href = 'knowledge.html';
+                    } else if (actionText.includes('чат')) {
+                        showModal('Чат поддержки', 'Открытие чата с технической поддержкой. Функция доступна в полной версии портала.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
